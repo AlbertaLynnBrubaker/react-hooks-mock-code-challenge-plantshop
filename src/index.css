@@ -82,7 +82,7 @@ label {
   display: block;
 }
 
-input {
+.form-input {
   padding: 0.25rem;
   border: none;
   font-family: inherit;
@@ -92,7 +92,7 @@ input {
   width: 100%;
 }
 
-input:focus {
+.form-input:focus {
   outline: none;
   border-bottom: 2px solid var(--green);
 }
@@ -134,4 +134,17 @@ input:focus {
   .card {
     width: calc(20% - 2rem);
   }
+}
+
+.price {
+  display: inline-flex;
+  padding-right: 10px;
+}
+
+#price-btn {
+  text-decoration-style: none;
+}
+
+#price-input {
+  width: 40%;
 }

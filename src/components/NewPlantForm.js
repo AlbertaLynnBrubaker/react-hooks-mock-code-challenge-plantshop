@@ -37,19 +37,22 @@ function NewPlantForm({handleSubmitPlant}) {
         <input
           onChange={handleFormChange}          
           type="text" 
-          name="name" 
+          name="name"
+          className="form-input" 
           placeholder="Plant name" 
         />
         <input
           onChange={handleFormChange}
           type="text" 
           name="image" 
+          className="form-input"
           placeholder="Image URL" 
         />
         <input
           onChange={handleFormChange}
           type="number" 
           name="price" 
+          className="form-input"
           step="0.01" 
           placeholder="Price" 
         />

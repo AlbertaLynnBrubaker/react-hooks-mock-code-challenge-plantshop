@@ -7,6 +7,7 @@ function PlantPage() {
   const [ plants, setPlants] = useState([])
   const [formData, setFormData] = useState({})
   const [searchQuery, setSearchQuery] = useState("")
+  // const [newPrice, setNewPrice] = useState()
 
   useEffect(() => {
     fetch('http://localhost:6001/plants')
@@ -17,6 +18,17 @@ function PlantPage() {
   const handleSubmitPlant = (newPlant) => {
     setFormData(oldFormData => oldFormData = newPlant)
     setPlants(oldPlants => [...oldPlants, formData] )
+  }
+
+  const handleNewPrice = (newPlant, plantId) => {
+    console.log(newPlant.price)
+    setPlants(oldPlants => oldPlants.map(plant => {
+      if(plant.id === plantId) {
+        return {...plant, price: parseFloat(newPlant.price).toFixed(2)}
+      } else {
+        return plant
+      }
+    }))
   }
 
   const handleSearchPlants = (e) => {
@@ -35,7 +47,7 @@ function PlantPage() {
     <main>
       <NewPlantForm handleSubmitPlant={handleSubmitPlant}/>
       <Search handleSearchPlants={handleSearchPlants}/>
-      <PlantList plants={filteredPlants} />
+      <PlantList handleNewPrice={handleNewPrice} plants={filteredPlants} />
     </main>
   );
 }
