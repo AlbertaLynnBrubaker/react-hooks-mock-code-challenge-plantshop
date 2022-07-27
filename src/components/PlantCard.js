@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function PlantCard({handleNewPrice, plant}) {
+function PlantCard({handleRemovePlant, handleNewPrice, plant}) {
   const [isInStock, setIsInStock] = useState(true)
   const [isUpdatePrice, setIsUpdatePrice] = useState(false)
   const [trackPrice, setTrackPrice] = useState(plant.price)
@@ -36,6 +36,13 @@ function PlantCard({handleNewPrice, plant}) {
     setIsUpdatePrice(!isUpdatePrice)
   }
 
+  const handleDelete = () => {
+    fetch(`http://localhost:6001/plants/${plant.id}`, {
+      method: 'DELETE'
+    })
+      .then(() => handleRemovePlant(plant.id) )
+  }
+
   return (
     <li className="card">
       <img src={plant.image} alt={plant.name} />
@@ -57,6 +64,7 @@ function PlantCard({handleNewPrice, plant}) {
       ) : (
         <button onClick={toggleInStock}>Out of Stock</button>
       )}
+      <button onClick={handleDelete}>Remove Plant</button>
     </li>
   );
 }

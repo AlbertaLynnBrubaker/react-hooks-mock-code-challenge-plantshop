@@ -27,7 +27,15 @@ function NewPlantForm({handleSubmitPlant}) {
       body: JSON.stringify(formInput)
     })
       .then(r => r.json())
-      .then(newPlant => handleSubmitPlant(newPlant)) 
+      .then(newPlant => handleSubmitPlant(newPlant))
+
+    setformInput(formInput => {
+      return formInput = {
+        name: "",
+        image: "",
+        price: ""
+      }
+    })
   }
 
   return (
@@ -39,14 +47,16 @@ function NewPlantForm({handleSubmitPlant}) {
           type="text" 
           name="name"
           className="form-input" 
-          placeholder="Plant name" 
+          placeholder="Plant name"
+          value={ formInput.name }
         />
         <input
           onChange={handleFormChange}
           type="text" 
           name="image" 
           className="form-input"
-          placeholder="Image URL" 
+          placeholder="Image URL"
+          value={ formInput.image }
         />
         <input
           onChange={handleFormChange}
@@ -54,7 +64,8 @@ function NewPlantForm({handleSubmitPlant}) {
           name="price" 
           className="form-input"
           step="0.01" 
-          placeholder="Price" 
+          placeholder="Price"
+          value={ formInput.price }
         />
         <button type="submit">Add Plant</button>
       </form>
